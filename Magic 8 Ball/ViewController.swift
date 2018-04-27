@@ -10,8 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+   @IBOutlet weak var ballImageView: UIImageView!
+   var randomAnswer : Int = 0
+   
    override func viewDidLoad() {
       super.viewDidLoad()
+      updateAsnwer()
       // Do any additional setup after loading the view, typically from a nib.
    }
 
@@ -20,6 +24,18 @@ class ViewController: UIViewController {
       // Dispose of any resources that can be recreated.
    }
 
-
+   @IBAction func helpButton(_ sender: UIButton) {
+      updateAsnwer()
+   }
+   
+   func updateAsnwer() {
+      randomAnswer = Int(arc4random_uniform(5))
+      ballImageView.image = UIImage(named: "ball" + String(randomAnswer+1))
+   }
+   
+   override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+      updateAsnwer()
+   }
+   
 }
 
